@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %} Update Employee {% endblock %} 
+
+{% block content %}
+<div class="container-fluid mt-2">
+<div class="card">
+  <div class="card-header text-center">
+    <h3>Update Employee</h3>
+  </div>
+  <div class="card-body">
+    <form method="POST" action="/update-emp/{{obj_list.id}}" >
+        {% csrf_token %}
+    <div class="mb-2 row">   
+    <div class="col-6"> 
+    <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" value="{{obj_list.first_name}}" class="form-control" id="first_name" name="first_name">
+    </div>
+    </div>
+     <div class="col-6"> 
+    <label for="last_name" class="col-sm-2 col-form-label">Last name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" value="{{obj_list.last_name}}" id="last_name" name="last_name">
+    </div>
+     </div>
+  </div>
+  <div class="mb-2 row">   
+    <div class="col-6"> 
+    <label for="department" class="col-sm-2 col-form-label">Department</label>
+    <div class="col-sm-10">
+      <select class="form-select" id="department" name="department">    
+        {% for obj in obj_dept %}    
+        <option {% if obj.id == obj_list.dept.id %}selected{%endif%} value="{{obj.id}}">{{obj.name}}</option>   
+        {% endfor %}     
+      </select>
+    </div>
+    </div>
+     <div class="col-6"> 
+    <label for="role" class="col-sm-2 col-form-label">Role</label>
+    <div class="col-sm-10">
+      <select class="form-select" id="role" name="role">    
+        {% for obj in obj_role %}    
+        <option value="{{obj.id}}" {% if obj.id == obj_list.role.id %}selected{%endif%}>{{obj.name}}</option>   
+        {% endfor %}     
+      </select>     
+    </div>
+     </div>
+  </div>
+  <div class="mb-2 row">   
+    <div class="col-6"> 
+    <label for="salary" class="col-sm-2 col-form-label">Salary</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" value="{{obj_list.salary}}" id="salary" name="salary">
+    </div>
+    </div>
+     <div class="col-6"> 
+    <label for="role" class="col-sm-2 col-form-label">Bonus</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" value="{{obj_list.bonus}}" id="bonus" name="bonus">
+    </div>
+     </div>
+  </div>
+  <div class="mb-3 row">   
+    <div class="col-6"> 
+    <label for="salary" class="col-sm-2 col-form-label">Phone</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" value="{{obj_list.phone}}" id="phone" name="phone">
+    </div>
+    </div>
+     <div class="col-6"> 
+    <label for="role" class="col-sm-2 col-form-label">Hire Date</label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" value="{{obj_list.hire_date}}" id="hire_date" name="hire_date">
+    </div>
+     </div>
+  </div>
+
+    <div class="mb-2 row"> 
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary mb-3">Update Employee</button>   
+        </div>        
+    </div>
+</form>
+  </div>  
+  <div class="card-footer text-muted">
+    DBG
+  </div>
+</div>
+</div>
+{% endblock %}
